@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1078265784325",
+    "project_id": "papervault-c66b7",
+    "storage_bucket": "papervault-c66b7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1078265784325:android:c7d5e2d7385c3ff390d46c",
+        "android_client_info": {
+          "package_name": "com.hoangquanghuy.papervault"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4TvRzLW9RFD_UuAxGRQyNoaAQiq0Ti0E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
