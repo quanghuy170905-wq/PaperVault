@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
-public class RegisterActivity extends AppCompatActivity {
+public class dangky extends AppCompatActivity {
 
     private EditText edtDisplayName;
     private EditText edtEmail;
@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.dangky);
 
         edtDisplayName = findViewById(R.id.edtDisplayName);
         edtEmail = findViewById(R.id.edtEmail);
@@ -47,8 +47,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         txtGoToLogin.setOnClickListener(v -> {
             Intent intent = new Intent(
-                    RegisterActivity.this,
-                    LoginActivity.class
+                    dangky.this,
+                    dangnhap.class
             );
             startActivity(intent);
             finish();
@@ -95,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                             btnRegister.setText("Đăng ký");
 
                             Toast.makeText(
-                                    RegisterActivity.this,
+                                    dangky.this,
                                     "Không thể tạo tài khoản: "
                                             + task.getException().getMessage(),
                                     Toast.LENGTH_LONG
@@ -118,14 +118,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         user.updateProfile(profile).addOnCompleteListener(task -> {
             Toast.makeText(
-                    RegisterActivity.this,
+                    dangky.this,
                     "Đăng ký thành công",
                     Toast.LENGTH_SHORT
             ).show();
 
             Intent intent = new Intent(
-                    RegisterActivity.this,
-                    SetupVaultActivity.class
+                    dangky.this,
+                    taomasterpassword.class
             );
             startActivity(intent);
             finish();

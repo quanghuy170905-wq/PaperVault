@@ -24,7 +24,7 @@ import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class AddDocumentActivity extends AppCompatActivity {
+public class themtailieu extends AppCompatActivity {
 
     private EditText edtDocumentTitle;
     private EditText edtDocumentCategory;
@@ -42,7 +42,7 @@ public class AddDocumentActivity extends AppCompatActivity {
             registerForActivityResult(
                     new ActivityResultContracts.OpenDocument(),
                     uri -> {
-                        VaultSession.setFilePickerOpen(false);
+                        phiencuakho.setFilePickerOpen(false);
                         if (uri == null) {
                             return;
                         }
@@ -59,7 +59,7 @@ public class AddDocumentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_document);
+        setContentView(R.layout.themtailieu);
 
         edtDocumentTitle = findViewById(R.id.edtDocumentTitle);
         edtDocumentCategory = findViewById(R.id.edtDocumentCategory);
@@ -80,7 +80,7 @@ public class AddDocumentActivity extends AppCompatActivity {
         databaseExecutor = Executors.newSingleThreadExecutor();
 
         btnChooseFile.setOnClickListener(v -> {
-            VaultSession.setFilePickerOpen(true);
+            phiencuakho.setFilePickerOpen(true);
             filePickerLauncher.launch(new String[]{"image/*", "application/pdf"});
         });
 
@@ -108,7 +108,7 @@ public class AddDocumentActivity extends AppCompatActivity {
             return;
         }
 
-        if (!VaultSession.isUnlocked()) {
+        if (!phiencuakho.isUnlocked()) {
             Toast.makeText(
                     this,
                     "Vault đã khóa. Hãy mở khóa lại.",
@@ -135,11 +135,11 @@ public class AddDocumentActivity extends AppCompatActivity {
                     mimeType = "application/octet-stream";
                 }
 
-                encryptedPath = FileCryptoManager.encryptFromUri(
+                encryptedPath = mahoafile.encryptFromUri(
                         this,
                         sourceUri,
                         documentId,
-                        VaultSession.requireFileEncryptionKey()
+                        phiencuakho.requireFileEncryptionKey()
                 );
 
                 DocumentEntity document = new DocumentEntity(
@@ -210,7 +210,7 @@ public class AddDocumentActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (!VaultSession.isUnlocked()) {
+        if (!phiencuakho.isUnlocked()) {
             finish();
         }
     }

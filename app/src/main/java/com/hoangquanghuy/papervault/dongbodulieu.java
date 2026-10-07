@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class SyncManager {
+public final class dongbodulieu {
 
     public interface SyncCallback {
         void onSuccess(int syncedCount);
@@ -19,7 +19,7 @@ public final class SyncManager {
         void onError(Exception exception);
     }
 
-    private SyncManager() {
+    private dongbodulieu() {
     }
 
     public static void syncMetadata(
@@ -43,10 +43,10 @@ public final class SyncManager {
                 metadata.put("updatedAt", document.getUpdatedAt());
 
                 String encryptedMetadata =
-                        FileCryptoManager.encryptText(
+                        mahoafile.encryptText(
                                 metadata.toString(),
                                 document.getId(),
-                                VaultSession.requireFileEncryptionKey()
+                                phiencuakho.requireFileEncryptionKey()
                         );
 
                 Map<String, Object> cloudData = new HashMap<>();

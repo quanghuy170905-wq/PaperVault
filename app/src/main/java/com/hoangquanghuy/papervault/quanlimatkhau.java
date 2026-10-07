@@ -7,7 +7,6 @@ import android.util.Base64;
 import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 
 import javax.crypto.SecretKeyFactory;
@@ -15,7 +14,7 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-public class PasswordManager {
+public class quanlimatkhau {
 
     private static final String PREF_NAME = "vault_preferences";
     private static final String KEY_SALT = "master_password_salt";

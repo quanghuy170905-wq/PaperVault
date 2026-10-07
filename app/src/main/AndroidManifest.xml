@@ -11,19 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PaperVault"
-        android:name=".PaperVaultApplication">
-        <activity android:name=".VaultHomeActivity" />
-        <activity android:name=".UnlockVaultActivity" />
-        <activity android:name=".SetupVaultActivity" />
+        android:name=".khoakho">
+        <activity android:name=".manhinhchinh" />
+        <activity android:name=".mokhoa" />
+        <activity android:name=".taomasterpassword" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".dangky"
             android:exported="false" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".dangnhap"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".hoatdongchinh"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -33,10 +33,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddDocumentActivity"
+            android:name=".themtailieu"
             android:exported="false" />
         <activity
-            android:name=".ViewDocumentActivity"
+            android:name=".xemtailieu"
             android:exported="false" />
     </application>
 

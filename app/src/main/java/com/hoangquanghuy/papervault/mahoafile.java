@@ -21,7 +21,7 @@ import javax.crypto.CipherInputStream;
 import java.io.FileInputStream;
 import java.util.Arrays;
 import android.util.Base64;
-public final class FileCryptoManager {
+public final class mahoafile {
 
     private static final String TRANSFORMATION = "AES/GCM/NoPadding";
     private static final int IV_LENGTH = 12;
@@ -31,7 +31,7 @@ public final class FileCryptoManager {
             'P', 'V', '0', '1'
     };
 
-    private FileCryptoManager() {
+    private mahoafile() {
     }
 
     public static String encryptFromUri(

@@ -7,7 +7,7 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
-public class PaperVaultApplication extends Application
+public class khoakho extends Application
         implements DefaultLifecycleObserver {
 
     @Override
@@ -20,8 +20,8 @@ public class PaperVaultApplication extends Application
     }
     @Override
     public void onStop(@NonNull LifecycleOwner owner) {
-        if (!VaultSession.isFilePickerOpen()) {
-            VaultSession.lock();
+        if (!phiencuakho.isFilePickerOpen()) {
+            phiencuakho.lock();
         }
     }
 }

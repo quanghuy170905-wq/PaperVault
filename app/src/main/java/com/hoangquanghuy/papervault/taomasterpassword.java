@@ -10,9 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.hoangquanghuy.papervault.PasswordManager;
-
-public class SetupVaultActivity extends AppCompatActivity {
+public class taomasterpassword extends AppCompatActivity {
 
     private EditText edtMasterPassword;
     private EditText edtConfirmPassword;
@@ -21,7 +19,7 @@ public class SetupVaultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setup_vault);
+        setContentView(R.layout.taomasterpassword);
 
         edtMasterPassword = findViewById(R.id.edtMasterPassword);
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
@@ -46,7 +44,7 @@ public class SetupVaultActivity extends AppCompatActivity {
             return;
         }
 
-        PasswordManager.createVault(this, password);
+        quanlimatkhau.createVault(this, password);
 
         Toast.makeText(
                 this,
@@ -55,8 +53,8 @@ public class SetupVaultActivity extends AppCompatActivity {
         ).show();
 
         Intent intent = new Intent(
-                SetupVaultActivity.this,
-                VaultHomeActivity.class
+                taomasterpassword.this,
+                manhinhchinh.class
         );
         try {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -70,9 +68,9 @@ public class SetupVaultActivity extends AppCompatActivity {
                 return;
             }
 
-            VaultSession.unlock(this, user.getUid(), password);
+            phiencuakho.unlock(this, user.getUid(), password);
 
-            startActivity(new Intent(this, VaultHomeActivity.class));
+            startActivity(new Intent(this, manhinhchinh.class));
             finish();
 
         } catch (Exception e) {

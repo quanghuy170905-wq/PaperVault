@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class hoatdongchinh extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
@@ -22,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
 
         if (currentUser == null) {
-            intent = new Intent(this, LoginActivity.class);
+            intent = new Intent(this, dangnhap.class);
         } else {
-            intent = new Intent(this, UnlockVaultActivity.class);
+            intent = new Intent(this, mokhoa.class);
         }
 
         startActivity(intent);

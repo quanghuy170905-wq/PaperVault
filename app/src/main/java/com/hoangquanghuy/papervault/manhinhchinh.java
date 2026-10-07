@@ -3,7 +3,6 @@ package com.hoangquanghuy.papervault;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,8 +23,8 @@ import java.util.concurrent.Executors;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
-import com.google.firebase.auth.FirebaseAuth;
-public class VaultHomeActivity extends AppCompatActivity {
+
+public class manhinhchinh extends AppCompatActivity {
 
     private TextView txtWelcome;
     private TextView txtDocumentCount;
@@ -46,7 +45,7 @@ public class VaultHomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vault_home);
+        setContentView(R.layout.manhinhchinh);
         btnSyncMetadata = findViewById(R.id.btnSyncMetadata);
         btnSyncMetadata.setOnClickListener(view -> syncMetadata());
         txtWelcome = findViewById(R.id.txtWelcome);
@@ -63,7 +62,7 @@ public class VaultHomeActivity extends AppCompatActivity {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if (firebaseUser == null) {
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(this, dangnhap.class));
             finish();
             return;
         }
@@ -86,12 +85,12 @@ public class VaultHomeActivity extends AppCompatActivity {
                 documentList,
                 document -> {
                     Intent intent = new Intent(
-                            VaultHomeActivity.this,
-                            ViewDocumentActivity.class
+                            manhinhchinh.this,
+                            xemtailieu.class
                     );
 
                     intent.putExtra(
-                            ViewDocumentActivity.EXTRA_DOCUMENT_ID,
+                            xemtailieu.EXTRA_DOCUMENT_ID,
                             document.getId()
                     );
 
@@ -101,7 +100,7 @@ public class VaultHomeActivity extends AppCompatActivity {
         recyclerDocuments.setAdapter(documentAdapter);
 
         btnAddDocument.setOnClickListener(view -> {
-            startActivity(new Intent(this, AddDocumentActivity.class));
+            startActivity(new Intent(this, themtailieu.class));
         });
 
         loadDocuments("");
@@ -210,8 +209,8 @@ public class VaultHomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (!VaultSession.isUnlocked()) {
-            startActivity(new Intent(this, UnlockVaultActivity.class));
+        if (!phiencuakho.isUnlocked()) {
+            startActivity(new Intent(this, mokhoa.class));
             finish();
             return;
         }
@@ -231,7 +230,7 @@ public class VaultHomeActivity extends AppCompatActivity {
         }
     }
     private void syncMetadata() {
-        if (!VaultSession.isUnlocked()) {
+        if (!phiencuakho.isUnlocked()) {
             Toast.makeText(
                     this,
                     "Vault đã khóa. Hãy mở khóa lại.",
@@ -248,10 +247,10 @@ public class VaultHomeActivity extends AppCompatActivity {
                     .documentDao()
                     .getAllByOwner(ownerUid);
 
-            SyncManager.syncMetadata(
+            dongbodulieu.syncMetadata(
                     ownerUid,
                     documents,
-                    new SyncManager.SyncCallback() {
+                    new dongbodulieu.SyncCallback() {
                         @Override
                         public void onSuccess(int syncedCount) {
                             runOnUiThread(() -> {
@@ -260,7 +259,7 @@ public class VaultHomeActivity extends AppCompatActivity {
 
 
                                 Toast.makeText(
-                                        VaultHomeActivity.this,
+                                        manhinhchinh.this,
                                         "Đã đồng bộ "
                                                 + syncedCount
                                                 + " giấy tờ đã mã hóa.",
@@ -277,7 +276,7 @@ public class VaultHomeActivity extends AppCompatActivity {
 
 
                                 Toast.makeText(
-                                        VaultHomeActivity.this,
+                                        manhinhchinh.this,
                                         "Đồng bộ thất bại. Kiểm tra Internet và Firestore Rules.",
                                         Toast.LENGTH_LONG
                                 ).show();
@@ -288,11 +287,11 @@ public class VaultHomeActivity extends AppCompatActivity {
         });
     }
     private void lockVaultNow() {
-        VaultSession.lock();
+        phiencuakho.lock();
 
         Intent intent = new Intent(
                 this,
-                UnlockVaultActivity.class
+                mokhoa.class
         );
 
         intent.addFlags(
@@ -304,10 +303,10 @@ public class VaultHomeActivity extends AppCompatActivity {
         finish();
     }
     private void logout() {
-        VaultSession.lock();
+        phiencuakho.lock();
         FirebaseAuth.getInstance().signOut();
 
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, dangnhap.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

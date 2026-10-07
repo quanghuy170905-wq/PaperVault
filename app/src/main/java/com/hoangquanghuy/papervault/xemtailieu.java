@@ -25,7 +25,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
-public class ViewDocumentActivity extends AppCompatActivity {
+public class xemtailieu extends AppCompatActivity {
 
     public static final String EXTRA_DOCUMENT_ID = "document_id";
 
@@ -46,7 +46,7 @@ public class ViewDocumentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_document);
+        setContentView(R.layout.xemgiayto);
 
         txtTitle = findViewById(R.id.txtViewDocumentTitle);
         txtInfo = findViewById(R.id.txtViewDocumentInfo);
@@ -73,7 +73,7 @@ public class ViewDocumentActivity extends AppCompatActivity {
     }
 
     private void loadAndDecryptDocument() {
-        if (!VaultSession.isUnlocked()) {
+        if (!phiencuakho.isUnlocked()) {
             showError("Vault đã khóa. Hãy quay lại và mở khóa lại.");
             return;
         }
@@ -99,11 +99,11 @@ public class ViewDocumentActivity extends AppCompatActivity {
                     throw new IllegalStateException("Không có quyền xem giấy tờ.");
                 }
 
-                decryptedFile = FileCryptoManager.decryptToCache(
+                decryptedFile = mahoafile.decryptToCache(
                         this,
                         document.getLocalPath(),
                         document.getId(),
-                        VaultSession.requireFileEncryptionKey(),
+                        phiencuakho.requireFileEncryptionKey(),
                         document.getMimeType()
                 );
 
@@ -276,7 +276,7 @@ public class ViewDocumentActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (!VaultSession.isUnlocked()) {
+        if (!phiencuakho.isUnlocked()) {
             finish();
         }
     }

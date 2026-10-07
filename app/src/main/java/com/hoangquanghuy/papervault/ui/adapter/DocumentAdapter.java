@@ -38,7 +38,7 @@ public class DocumentAdapter
             int viewType
     ) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_document, parent, false);
+                .inflate(R.layout.xemtailieu, parent, false);
 
         return new DocumentViewHolder(view);
     }

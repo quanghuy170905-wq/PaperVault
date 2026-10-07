@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.hoangquanghuy.papervault.PasswordManager;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
@@ -17,7 +16,7 @@ import androidx.core.content.ContextCompat;
 import java.util.concurrent.Executor;
 
 import javax.crypto.Cipher;
-public class UnlockVaultActivity extends AppCompatActivity {
+public class mokhoa extends AppCompatActivity {
     private Button btnBiometricUnlock;
     private EditText edtMasterPassword;
     private Button btnUnlock;
@@ -25,7 +24,7 @@ public class UnlockVaultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_unlock_vault);
+        setContentView(R.layout.mokhoakho);
         btnBiometricUnlock = findViewById(R.id.btnBiometricUnlock);
 
         btnBiometricUnlock.setOnClickListener(
@@ -40,7 +39,7 @@ public class UnlockVaultActivity extends AppCompatActivity {
     private void unlockVault() {
         String password = edtMasterPassword.getText().toString();
 
-        if (!PasswordManager.verifyPassword(this, password)) {
+        if (!quanlimatkhau.verifyPassword(this, password)) {
             edtMasterPassword.setError("Master Password không đúng");
             return;
         }
@@ -57,7 +56,7 @@ public class UnlockVaultActivity extends AppCompatActivity {
                 return;
             }
 
-            VaultSession.unlock(this, user.getUid(), password);
+            phiencuakho.unlock(this, user.getUid(), password);
 
             prepareBiometricThenOpen(user.getUid());
         } catch (Exception e) {
@@ -70,14 +69,14 @@ public class UnlockVaultActivity extends AppCompatActivity {
     }
     private void prepareBiometricThenOpen(String ownerUid) {
         if (!isBiometricAvailable()
-                || BiometricKeyManager.hasWrappedKey(this, ownerUid)) {
+                || mokhoavantay.hasWrappedKey(this, ownerUid)) {
 
             openVaultHome();
             return;
         }
 
         try {
-            Cipher cipher = BiometricKeyManager.createEncryptCipher(
+            Cipher cipher = mokhoavantay.createEncryptCipher(
                     this,
                     ownerUid
             );
@@ -99,22 +98,22 @@ public class UnlockVaultActivity extends AppCompatActivity {
                                         .getCryptoObject()
                                         .getCipher();
 
-                                BiometricKeyManager.saveWrappedFileKey(
-                                        UnlockVaultActivity.this,
+                                mokhoavantay.saveWrappedFileKey(
+                                        mokhoa.this,
                                         ownerUid,
                                         authenticatedCipher,
-                                        VaultSession.requireFileEncryptionKey()
+                                        phiencuakho.requireFileEncryptionKey()
                                 );
 
                                 Toast.makeText(
-                                        UnlockVaultActivity.this,
+                                        mokhoa.this,
                                         "Đã bật mở khóa bằng vân tay.",
                                         Toast.LENGTH_SHORT
                                 ).show();
 
                             } catch (Exception e) {
                                 Toast.makeText(
-                                        UnlockVaultActivity.this,
+                                        mokhoa.this,
                                         "Không thể thiết lập vân tay.",
                                         Toast.LENGTH_SHORT
                                 ).show();
@@ -182,7 +181,7 @@ public class UnlockVaultActivity extends AppCompatActivity {
             return;
         }
 
-        if (!BiometricKeyManager.hasWrappedKey(this, ownerUid)) {
+        if (!mokhoavantay.hasWrappedKey(this, ownerUid)) {
             Toast.makeText(
                     this,
                     "Hãy nhập Master Password một lần để thiết lập vân tay.",
@@ -192,7 +191,7 @@ public class UnlockVaultActivity extends AppCompatActivity {
         }
 
         try {
-            Cipher cipher = BiometricKeyManager.createDecryptCipher(
+            Cipher cipher = mokhoavantay.createDecryptCipher(
                     this,
                     ownerUid
             );
@@ -215,13 +214,13 @@ public class UnlockVaultActivity extends AppCompatActivity {
                                         .getCipher();
 
                                 byte[] keyBytes =
-                                        BiometricKeyManager.unwrapFileKey(
-                                                UnlockVaultActivity.this,
+                                        mokhoavantay.unwrapFileKey(
+                                                mokhoa.this,
                                                 ownerUid,
                                                 authenticatedCipher
                                         );
 
-                                VaultSession.restoreFileEncryptionKey(
+                                phiencuakho.restoreFileEncryptionKey(
                                         keyBytes
                                 );
 
@@ -229,7 +228,7 @@ public class UnlockVaultActivity extends AppCompatActivity {
 
                             } catch (Exception e) {
                                 Toast.makeText(
-                                        UnlockVaultActivity.this,
+                                        mokhoa.this,
                                         "Không thể mở khóa bằng vân tay.",
                                         Toast.LENGTH_SHORT
                                 ).show();
@@ -247,7 +246,7 @@ public class UnlockVaultActivity extends AppCompatActivity {
                             );
 
                             Toast.makeText(
-                                    UnlockVaultActivity.this,
+                                    mokhoa.this,
                                     "Vân tay chưa được xác thực.",
                                     Toast.LENGTH_SHORT
                             ).show();
@@ -287,7 +286,7 @@ public class UnlockVaultActivity extends AppCompatActivity {
     }
 
     private void openVaultHome() {
-        startActivity(new Intent(this, VaultHomeActivity.class));
+        startActivity(new Intent(this, manhinhchinh.class));
         finish();
     }
 }

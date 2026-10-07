@@ -13,7 +13,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 
-public final class BiometricKeyManager {
+public final class mokhoavantay {
 
     private static final String ANDROID_KEYSTORE = "AndroidKeyStore";
     private static final String PREFS_NAME = "paper_vault_biometric";
@@ -25,7 +25,7 @@ public final class BiometricKeyManager {
     private static final String TRANSFORMATION = "AES/GCM/NoPadding";
     private static final int GCM_TAG_LENGTH_BITS = 128;
 
-    private BiometricKeyManager() {
+    private mokhoavantay() {
     }
 
     public static boolean hasWrappedKey(

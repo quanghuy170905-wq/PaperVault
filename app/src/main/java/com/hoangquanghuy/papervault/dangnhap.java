@@ -15,8 +15,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.hoangquanghuy.papervault.PasswordManager;
-public class LoginActivity extends AppCompatActivity {
+
+public class dangnhap extends AppCompatActivity {
 
     private EditText edtEmail;
     private EditText edtPassword;
@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.dangnhap);
 
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
@@ -41,8 +41,8 @@ public class LoginActivity extends AppCompatActivity {
 
         txtGoToRegister.setOnClickListener(v -> {
             Intent intent = new Intent(
-                    LoginActivity.this,
-                    RegisterActivity.class
+                    dangnhap.this,
+                    dangky.class
             );
             startActivity(intent);
             finish();
@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                             btnLogin.setText("Đăng nhập");
 
                             Toast.makeText(
-                                    LoginActivity.this,
+                                    dangnhap.this,
                                     "Email hoặc mật khẩu không đúng",
                                     Toast.LENGTH_SHORT
                             ).show();
@@ -89,10 +89,10 @@ public class LoginActivity extends AppCompatActivity {
     private void openVaultScreen() {
         Intent intent;
 
-        if (PasswordManager.isVaultCreated(this)) {
-            intent = new Intent(this, UnlockVaultActivity.class);
+        if (quanlimatkhau.isVaultCreated(this)) {
+            intent = new Intent(this, mokhoa.class);
         } else {
-            intent = new Intent(this, SetupVaultActivity.class);
+            intent = new Intent(this, taomasterpassword.class);
         }
 
         startActivity(intent);

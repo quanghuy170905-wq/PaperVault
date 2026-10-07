@@ -6,11 +6,11 @@ import java.security.GeneralSecurityException;
 
 import javax.crypto.SecretKey;
 
-public final class VaultSession {
+public final class phiencuakho {
 
     private static SecretKey fileEncryptionKey;
     private static boolean filePickerOpen = false;
-    private VaultSession() {
+    private phiencuakho() {
     }
 
     public static void unlock(
@@ -19,7 +19,7 @@ public final class VaultSession {
             String masterPassword
     ) throws GeneralSecurityException {
 
-        fileEncryptionKey = PasswordManager.deriveFileEncryptionKey(
+        fileEncryptionKey = quanlimatkhau.deriveFileEncryptionKey(
                 context,
                 ownerUid,
                 masterPassword
